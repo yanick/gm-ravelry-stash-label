@@ -1,8 +1,9 @@
 import jquery from 'jquery';
-import kjua from 'kjua';
+import kjua   from 'kjua';
 
-    let $label = jquery('<a href="#" />');
-    $label
+let $label = jquery('<a href="#" />');
+
+$label
      .addClass('button')
      .append( '<span>print label</span>');
     jquery('#stash_owner_button_set div.c_d').before($label);
@@ -56,32 +57,26 @@ function show_label() {
 }
 
 function gather_info() {
-  var yarn_name =
-      jquery('#content .heading h2').contents().map(function(){
+    let info = {};
+
+    let stash = info.stash = {};
+
+    stash.name = jquery('#content .heading h2').contents().map(function(){
         return this.nodeType == 3 ? this.nodeValue : undefined;
-      }).get().join('');
-  
-  var fields = { "name": yarn_name };
+    }).get().join('');
   
     jquery('.core_item_inner .fields div.field').each(function(){
-      console.log('hi');
-      var l = jquery(this).children('label').text().toLowerCase().replace(/ /g,'_');
-      var val = jquery(this).children('.value').html();
-      fields[l] = val;
+      fields[
+          jquery(this).children('label').text().toLowerCase().replace(/ /g,'_')
+      ] = jquery(this).children('.value').html();
     });
   
-    var yarn_info = {};
+    let yarn = info.yarn = {};
   
     jquery('#yarn_summary .yarn_summary .yarn_summary_content div' ).each(function(){
-      var l = jquery(this).attr('class');
-      var val = jquery(this).html();
-      yarn_info[l] = val;
+      yarn[ jquery(this).attr('class') ] = jquery(this).html();
     });
   
-
-  var info = { stash: fields, yarn: yarn_info };
-  
   return info;
-  
 }
 
