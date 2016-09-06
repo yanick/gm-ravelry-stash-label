@@ -11,7 +11,7 @@ module.exports = {
     output: {
         path: 'dist',
         publicPath: '/',
-        filename: "main.js"
+        filename: "ravelry-stash-label.user.js"
     },
     module: {
         loaders: [

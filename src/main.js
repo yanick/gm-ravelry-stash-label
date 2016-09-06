@@ -1,17 +1,14 @@
 import jquery from 'jquery';
 import kjua   from 'kjua';
 
-let $label = jquery('<a href="#" />');
-
-$label
-     .addClass('button')
-     .append( '<span>print label</span>');
-    jquery('#stash_owner_button_set div.c_d').before($label);
-  $label.on( 'click', show_label);
+jquery('<a href="#" />')
+    .addClass('button')
+    .append( '<span>&#9113; print label</span>')
+    .on( 'click', show_label)
+    .insertBefore('#stash_owner_button_set div.c_d');
 
 function show_label() {
- console.log("yo!"); 
- let info = gather_info();
+  let info = gather_info();
   let template = `<div class='label_strip'>
                     <div style='display: flex; flex-direction: row;'>
                         <div class='label_info' style='text-align: left'>
@@ -24,24 +21,25 @@ function show_label() {
                     <div id='qrcode' />
                 </div>`;
 
-  console.log(template);
-   
   jquery('body').html( template )
    .attr('class', '')
   .append( "<style>@media print { @page { orientation: landscape } }</style>" ) 
   ;
   
-  jquery('#qrcode').qrcode({
-    text: window.location.toString(),
-    size: 100
-  });
+  document.querySelector('#qrcode').appendChild(
+        kjua({
+            text: window.location.toString(),
+            size: 100,
+            crisp: true
+        })
+    );
   
   jquery('.label_strip').css({ 
-    'padding-left': '25%',
-    'margin-top': '3cm',
-    'border': '1px solid black',
-    'margin': '0.3cm',
-    'padding-top': '0.3cm',
+    'padding-left':   '25%',
+    'margin-top':     '3cm',
+    'border':         '1px solid black',
+    'margin':         '0.3cm',
+    'padding-top':    '0.3cm',
     'padding-bottom': '0.3cm'
   });
   
@@ -50,7 +48,7 @@ function show_label() {
   })
   
   jquery('#stash_name').css({
-    'font-size': 'large',
+    'font-size':   'large',
     'font-weight': 'bold'
   })
   
@@ -66,7 +64,7 @@ function gather_info() {
     }).get().join('');
   
     jquery('.core_item_inner .fields div.field').each(function(){
-      fields[
+      stash[
           jquery(this).children('label').text().toLowerCase().replace(/ /g,'_')
       ] = jquery(this).children('.value').html();
     });
