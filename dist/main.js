@@ -1,14 +1,3 @@
-// ==UserScript==
-// @name        Ravelry Stash Labels
-// @author      yanick
-// @namespace   Yanick
-// @description Create labels for stashed yarn
-// @include     /http://www.ravelry.com/people/.+/stash/.*$/
-// @version     2
-// @grant       GM_xmlhttpRequest 
-// @runt-at     document-idle
-// ==/UserScript==
-
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};

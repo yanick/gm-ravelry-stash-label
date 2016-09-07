@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name        Ravelry Stash Labels
+// @author      yanick
 // @namespace   Yanick
 // @description Create labels for stashed yarn
 // @include     /http://www.ravelry.com/people/.+/stash/.*$/
