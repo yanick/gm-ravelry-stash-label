@@ -7,6 +7,7 @@
 // @grant       GM_xmlhttpRequest 
 // @runt-at     document-idle
 // ==/UserScript==
+
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
